@@ -1,10 +1,10 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGES } = require('../constant/Messages');
+const { GUIDE_MESSAGES } = require('../constant/Messages');
 const InputView = require('../view/InputView');
 
 class BridgeGameController {
   start() {
-    Console.print(MESSAGES.gameStart);
+    Console.print(GUIDE_MESSAGES.gameStart);
     this.makeBridge();
   }
 

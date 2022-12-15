@@ -1,5 +1,6 @@
 const { Console } = require('@woowacourse/mission-utils');
-const { MESSAGES } = require('../constant/Messages');
+const { GAME_SETTINGS } = require('../constant/GameSettings');
+const { GUIDE_MESSAGES, ERROR_MESSAGES } = require('../constant/Messages');
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -9,9 +10,28 @@ const InputView = {
    * 다리의 길이를 입력받는다.
    */
   readBridgeSize(callback) {
-    Console.readLine(MESSAGES.bridgeSize, (size) => {
+    Console.readLine(GUIDE_MESSAGES.bridgeSize, (size) => {
+      this.handleWrongSizeException(size);
       callback(size);
     });
+  },
+
+  handleWrongSizeException(size) {
+    this.handeWrongSizeTypeException(size);
+    this.handleWrongSizeRange(size);
+  },
+
+  handeWrongSizeTypeException(size) {
+    const IS_NUMBER = /^[0-9]+$/.test(size);
+    if (!IS_NUMBER) {
+      throw ERROR_MESSAGES.bridgeSizeType;
+    }
+  },
+
+  handleWrongSizeRange(size) {
+    if (size < GAME_SETTINGS.minLength || size > GAME_SETTINGS.maxLength) {
+      throw ERROR_MESSAGES.bridgeSizeRange;
+    }
   },
 
   /**
