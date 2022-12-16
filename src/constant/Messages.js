@@ -6,8 +6,8 @@ const GUIDE_MESSAGES = Object.freeze({
 });
 
 const ERROR_MESSAGES = Object.freeze({
-  bridgeSizeType: `${GAME_SETTINGS} 숫자만 입력해주세요.`,
-  bridgeSizeRange: `${GAME_SETTINGS} 3 이상 20 이하의 자연수만 입력해주세요.`,
+  bridgeSizeType: `${GAME_SETTINGS.error} 숫자만 입력해주세요.`,
+  bridgeSizeRange: `${GAME_SETTINGS.error} 3 이상 20 이하의 자연수만 입력해주세요.`,
 });
 
 module.exports = { GUIDE_MESSAGES, ERROR_MESSAGES };
