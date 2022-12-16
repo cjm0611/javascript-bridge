@@ -46,7 +46,28 @@ const InputView = {
   /**
    * 사용자가 이동할 칸을 입력받는다.
    */
-  readMoving() {},
+  readMoving(callback) {
+    Console.readLine(GUIDE_MESSAGES.moving, (moving) => {
+      this.validateMoving(moving, callback);
+    });
+  },
+
+  validateMoving(moving, callback) {
+    try {
+      this.handleWrongMovingException(moving);
+      callback(moving);
+    } catch (error) {
+      Console.print(error);
+      this.readMoving(callback);
+    }
+  },
+
+  handleWrongMovingException(moving) {
+    const movings = [GAME_SETTINGS.up, GAME_SETTINGS.down];
+    if (!movings.includes(moving)) {
+      throw ERROR_MESSAGES.moving;
+    }
+  },
 
   /**
    * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.

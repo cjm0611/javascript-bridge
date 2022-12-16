@@ -18,9 +18,16 @@ class BridgeGameController {
       const generateRandomNumber = BridgeRandomNumberGenerator.generate;
       const bridge = BridgeMaker.makeBridge(Number(size), generateRandomNumber);
       this.#game.setBridge(bridge);
+      this.crossBridge();
     };
 
     InputView.readBridgeSize(onDeliveryBridgeSize);
+  }
+
+  crossBridge() {
+    const onDeliveryMoving = (moving) => {};
+
+    InputView.readMoving(onDeliveryMoving);
   }
 }
 
