@@ -91,7 +91,8 @@ class BridgeGameController {
 
   gameEnd(IS_CLEAR_GAME) {
     const { U, D } = this.#map.getMaps();
-    OutputView.printResult(IS_CLEAR_GAME, U, D);
+    const numberOfAttempts = this.#game.getNumberOfAttempts();
+    OutputView.printResult(IS_CLEAR_GAME, U, D, numberOfAttempts);
     Console.close();
   }
 }

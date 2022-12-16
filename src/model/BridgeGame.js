@@ -4,6 +4,7 @@
 class BridgeGame {
   #bridge;
   #movingIndex = 0;
+  #numberOfAttempts = 1;
 
   setBridge(bridge) {
     this.#bridge = bridge;
@@ -11,6 +12,10 @@ class BridgeGame {
 
   getBridge() {
     return this.#bridge;
+  }
+
+  getNumberOfAttempts() {
+    return this.#numberOfAttempts;
   }
 
   /**
@@ -35,6 +40,7 @@ class BridgeGame {
    */
   retry() {
     this.#movingIndex = 0;
+    this.#numberOfAttempts += 1;
   }
 }
 
