@@ -25,7 +25,9 @@ class BridgeGameController {
   }
 
   crossBridge() {
-    const onDeliveryMoving = (moving) => {};
+    const onDeliveryMoving = (moving) => {
+      this.#game.move(moving);
+    };
 
     InputView.readMoving(onDeliveryMoving);
   }

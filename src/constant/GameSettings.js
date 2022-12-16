@@ -4,6 +4,12 @@ const GAME_SETTINGS = Object.freeze({
   up: 'U',
   down: 'D',
   error: '[ERROR]',
+  canMove: 'O',
+  cannotMove: 'X',
+  notSelect: ' ',
+  bridgeStart: '[',
+  bridgeEnd: ']',
+  bridgeDividingLine: ' | ',
 });
 
 const MAPPING_BRIDGE_SHAPE = Object.freeze({
