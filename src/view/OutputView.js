@@ -23,8 +23,8 @@ const OutputView = {
    */
   printResult(IS_CLEAR_GAME, maps, numberOfAttempts) {
     Console.print(GUIDE_MESSAGES.finalResult);
-    const { U, D } = maps;
-    this.printMap(U, D);
+    const { upMap, downMap } = maps;
+    this.printMap(upMap, downMap);
     const clearOrNotMessage = IS_CLEAR_GAME ? GUIDE_MESSAGES.gameClear : GUIDE_MESSAGES.gameOver;
     Console.print(clearOrNotMessage);
     Console.print(GUIDE_MESSAGES.numberOfAttempts(numberOfAttempts));

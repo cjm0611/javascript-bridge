@@ -21,7 +21,6 @@ class BridgeGameController {
     const onDeliveryBridgeSize = (size) => {
       const generateRandomNumber = BridgeRandomNumberGenerator.generate;
       const bridge = BridgeMaker.makeBridge(Number(size), generateRandomNumber);
-      console.log('정답 : ', bridge);
       this.#game.setBridge(bridge);
       this.crossBridge();
     };
@@ -56,8 +55,8 @@ class BridgeGameController {
   }
 
   printNowMap() {
-    const { U, D } = this.#map.getMaps();
-    OutputView.printMap(U, D);
+    const { upMap, downMap } = this.#map.getMaps();
+    OutputView.printMap(upMap, downMap);
   }
 
   successCrossWholeBridge() {

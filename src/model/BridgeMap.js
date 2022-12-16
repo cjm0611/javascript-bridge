@@ -7,7 +7,9 @@ class BridgeMap {
   };
 
   getMaps() {
-    return this.#maps;
+    const upMap = this.#maps.U;
+    const downMap = this.#maps.D;
+    return { upMap, downMap };
   }
 
   pushShape(direction, IS_CORRECT_MOVING) {
