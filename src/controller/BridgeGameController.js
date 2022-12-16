@@ -1,4 +1,5 @@
 const { Console } = require('@woowacourse/mission-utils');
+const { GAME_SETTINGS } = require('../constant/GameSettings');
 const { GUIDE_MESSAGES } = require('../constant/Messages');
 const InputView = require('../view/InputView');
 const OutputView = require('../view/OutputView');
@@ -30,23 +31,28 @@ class BridgeGameController {
 
   crossBridge() {
     const onDeliveryMoving = (moving) => {
-      const CAN_CONTIUE_CROSS = this.#game.move(moving);
+      const { CAN_CONTIUE_CROSS, IS_LEFT_BRIDGE } = this.#game.move(moving);
       this.#map.pushShape(moving, CAN_CONTIUE_CROSS);
-      this.oneMovingResult(CAN_CONTIUE_CROSS);
+      this.oneMovingResult(CAN_CONTIUE_CROSS, IS_LEFT_BRIDGE);
     };
 
     InputView.readMoving(onDeliveryMoving);
   }
 
-  oneMovingResult(CAN_CONTIUE_CROSS) {
+  oneMovingResult(CAN_CONTIUE_CROSS, IS_LEFT_BRIDGE) {
     this.printNowMap();
 
-    if (CAN_CONTIUE_CROSS) {
+    if (!CAN_CONTIUE_CROSS) {
+      this.failCrossBridge();
+      return;
+    }
+
+    if (CAN_CONTIUE_CROSS && IS_LEFT_BRIDGE) {
       this.crossBridge();
       return;
     }
 
-    this.failCrossBridge();
+    this.successCrossWholeBridge();
   }
 
   printNowMap() {
@@ -54,10 +60,39 @@ class BridgeGameController {
     OutputView.printMap(U, D);
   }
 
+  successCrossWholeBridge() {
+    const IS_CLEAR_GAME = true;
+    this.gameEnd(IS_CLEAR_GAME);
+  }
+
   failCrossBridge() {
-    const onDeliveryCommand = (command) => {};
+    const onDeliveryCommand = (command) => {
+      this.retryOrQuit(command);
+    };
 
     InputView.readGameCommand(onDeliveryCommand);
+  }
+
+  retryOrQuit(command) {
+    if (command === GAME_SETTINGS.retry) {
+      this.retryGame();
+      return;
+    }
+
+    const IS_CLEAR_GAME = false;
+    this.gameEnd(IS_CLEAR_GAME);
+  }
+
+  retryGame() {
+    this.#game.retry();
+    this.#map.retry();
+    this.crossBridge();
+  }
+
+  gameEnd(IS_CLEAR_GAME) {
+    const { U, D } = this.#map.getMaps();
+    OutputView.printResult(IS_CLEAR_GAME, U, D);
+    Console.close();
   }
 }
 

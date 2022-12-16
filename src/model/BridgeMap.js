@@ -26,6 +26,13 @@ class BridgeMap {
     this.#maps.U.push(GAME_SETTINGS.bridgeDividingLine);
     this.#maps.D.push(GAME_SETTINGS.bridgeDividingLine);
   }
+
+  retry() {
+    this.#maps = {
+      U: [GAME_SETTINGS.bridgeStart],
+      D: [GAME_SETTINGS.bridgeStart],
+    };
+  }
 }
 
 module.exports = BridgeMap;

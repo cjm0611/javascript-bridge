@@ -5,6 +5,10 @@ const GUIDE_MESSAGES = Object.freeze({
   bridgeSize: '다리의 길이를 입력해주세요.\n',
   moving: `이동할 칸을 선택해주세요. (위: ${GAME_SETTINGS.up}, 아래: ${GAME_SETTINGS.down})\n`,
   command: `게임을 다시 시도할지 여부를 입력해주세요. (재시도: ${GAME_SETTINGS.retry}, 종료: ${GAME_SETTINGS.quit})\n`,
+  finalResult: '최종 게임 결과',
+  gameClear: '게임 성공 여부: 성공',
+  gameOver: '게임 성공 여부: 실패',
+  numberOfAttempts: (number) => `총 시도한 횟수: ${number}`,
 });
 
 const ERROR_MESSAGES = Object.freeze({
