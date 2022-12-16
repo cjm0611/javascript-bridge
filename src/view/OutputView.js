@@ -21,10 +21,10 @@ const OutputView = {
    * <p>
    * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
-  printResult(IS_CLEAR_GAME, finalUpMap, finalDownMap, numberOfAttempts) {
-    console.log(numberOfAttempts);
+  printResult(IS_CLEAR_GAME, maps, numberOfAttempts) {
     Console.print(GUIDE_MESSAGES.finalResult);
-    this.printMap(finalUpMap, finalDownMap);
+    const { U, D } = maps;
+    this.printMap(U, D);
     const clearOrNotMessage = IS_CLEAR_GAME ? GUIDE_MESSAGES.gameClear : GUIDE_MESSAGES.gameOver;
     Console.print(clearOrNotMessage);
     Console.print(GUIDE_MESSAGES.numberOfAttempts(numberOfAttempts));
