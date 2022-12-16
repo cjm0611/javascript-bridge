@@ -11,9 +11,18 @@ const InputView = {
    */
   readBridgeSize(callback) {
     Console.readLine(GUIDE_MESSAGES.bridgeSize, (size) => {
+      this.validateBridgeSize(size, callback);
+    });
+  },
+
+  validateBridgeSize(size, callback) {
+    try {
       this.handleWrongSizeException(size);
       callback(size);
-    });
+    } catch (error) {
+      Console.print(error);
+      this.readBridgeSize(callback);
+    }
   },
 
   handleWrongSizeException(size) {
