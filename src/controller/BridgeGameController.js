@@ -45,12 +45,19 @@ class BridgeGameController {
       this.crossBridge();
       return;
     }
+
+    this.failCrossBridge();
   }
 
   printNowMap() {
     const { U, D } = this.#map.getMaps();
-    console.log(U, D);
     OutputView.printMap(U, D);
+  }
+
+  failCrossBridge() {
+    const onDeliveryCommand = (command) => {};
+
+    InputView.readGameCommand(onDeliveryCommand);
   }
 }
 

@@ -3,6 +3,8 @@ const GAME_SETTINGS = Object.freeze({
   maxLength: 20,
   up: 'U',
   down: 'D',
+  retry: 'R',
+  quit: 'Q',
   error: '[ERROR]',
   canMove: 'O',
   cannotMove: 'X',
