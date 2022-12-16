@@ -1,18 +1,16 @@
-const { GAME_SETTINGS } = require('../constant/GameSettings');
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
   #bridge;
-  #map;
+  #movingIndex = 0;
 
   setBridge(bridge) {
     this.#bridge = bridge;
   }
 
-  getMap() {
-    return this.#map;
+  getBridge() {
+    return this.#bridge;
   }
 
   /**
@@ -21,20 +19,9 @@ class BridgeGame {
    * 이동을 위해 필요한 메서드의 반환 값(return value), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
    */
   move(moving) {
-    const index = this.#map.length();
-    const answerShape = this.#bridge[index];
-    const IS_CORRECT_MOVING = answerShape === moving;
-    this.mapPushShape(IS_CORRECT_MOVING);
-    return { IS_CORRECT_MOVING };
-  }
-
-  mapPushShape(IS_CORRECT_MOVING) {
-    if (IS_CORRECT_MOVING) {
-      this.#map.push(GAME_SETTINGS.canMove);
-      return;
-    }
-
-    this.#map.push(GAME_SETTINGS.cannotMove);
+    const answerShape = this.#bridge[this.#movingIndex];
+    this.#movingIndex += 1;
+    return answerShape === moving;
   }
 
   /**

@@ -7,9 +7,13 @@ const GAME_SETTINGS = Object.freeze({
   canMove: 'O',
   cannotMove: 'X',
   notSelect: ' ',
-  bridgeStart: '[',
-  bridgeEnd: ']',
+  bridgeStart: '[ ',
+  bridgeEnd: ' ]',
   bridgeDividingLine: ' | ',
+  oppositeDirection: {
+    U: 'D',
+    D: 'U',
+  },
 });
 
 const MAPPING_BRIDGE_SHAPE = Object.freeze({
